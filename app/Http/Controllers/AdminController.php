@@ -23,4 +23,10 @@ class AdminController extends Controller
         $adminData = User::find($id);
         return view('admin.admin_profile_view',compact('adminData'));
     }
+    public function EditProfile()
+    {
+        $id = Auth::user()->id;
+        $adminData = User::find($id);
+        return view('admin.admin_profile_edit',compact('adminData'));
+    }
 }
