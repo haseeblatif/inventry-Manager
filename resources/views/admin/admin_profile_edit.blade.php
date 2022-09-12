@@ -8,37 +8,38 @@
         <div class="card-body">
 
             <h4 class="card-title">Edit Profile Page</h4>
-            <form>
+            <form method="POST" action = "{{ route('store.profile') }}" enctype="multipart/form-data">
+                @csrf
             <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
                 <div class="col-sm-10">
-                    <input name="name" class="form-control" type="text"  value="{{ $adminData->name }}"  id="example-text-input">
+                    <input name="name" class="form-control" type="text"  value="{{ $editData->name }}"  id="example-text-input">
                 </div>
             </div>
             <!-- end row -->
             <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input name="email" class="form-control" type="email"  value="{{ $adminData->email }}"  id="example-text-input">
+                    <input name="email" class="form-control" type="email"  value="{{ $editData->email }}"  id="example-text-input">
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="example-text-input" class="col-sm-2 col-form-label">Name</label>
+                <label for="example-text-input" class="col-sm-2 col-form-label">User Name</label>
                 <div class="col-sm-10">
-                    <input name="usermane" class="form-control" type="text"  value="{{ $adminData->username }}"  id="example-text-input">
+                    <input name="username" class="form-control" type="text"  value="{{ $editData->username }}"  id="example-text-input">
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Profile Image</label>
                 <div class="col-sm-10">
-                    <input name="profile_image" class="form-control" type="file"  value="{{ $adminData->username }}"  id="image">
+                    <input name="profile_image" class="form-control" type="file"  value="{{ $editData->username }}"  id="image">
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
                    
-                        <img id="showImage" class="rounded-circle avatar-xl" alt="200x200" src="{{ asset('backend/assets/images/users/avatar-4.jpg') }}" data-holder-rendered="true">
+                        <img id="showImage" class="rounded-circle avatar-xl" alt="200x200" src="{{(!empty('$editData->profile_image'))? url('upload/admin_Image/'.$editData->profile_image):url('upload/no_image.jpg') }}" data-holder-rendered="true">
                 </div>
             </div>
             <input type="submit" class="btn btn-info waves-effect waves-light" value="Update Profile">
