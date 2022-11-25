@@ -32,16 +32,16 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="example-text-input" class="col-sm-2 col-form-label">Profile Image</label>
+                <label for="example-text-input" class="col-sm-2 col-form-label">Image Slider</label>
                 <div class="col-sm-10">
-                    <input name="home_slide" class="form-control" type="file"  value="{{ $homeslide->video_url }}"  id="image">
+                    <input name="home_slide" class="form-control" type="file"  value="{{ $homeslide->home_slide }}"  id="image">
                 </div>
             </div>
             <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
                    
-                        <img id="showImage" class="rounded-circle avatar-xl" alt="200x200" src="{{(!empty('$homeslide->home_slide'))? url('upload/home_slide/'.$homeslide->home_slide):url('upload/no_image.jpg') }}" data-holder-rendered="true">
+                        <img id="showImage" class="rounded avatar-lg" alt="Image" src="{{(!empty($homeslide->home_slide))? url($homeslide->home_slide):url('upload/no_image.jpg') }}" data-holder-rendered="true">
                 </div>
             </div>
             <input type="submit" class="btn btn-info waves-effect waves-light" value="Update Slide">
@@ -56,4 +56,17 @@
     </div>
   </div>
 </div>
-@endsection
+<script type="text/javascript">
+   
+    $(document).ready(function(){
+     $('#image').change(function(e){
+         var reader = new FileReader();
+         reader.onload = function(e){
+             $('#showImage').attr('src',e.target.result);
+         }
+         reader.readAsDataURL(e.target.files['0']);
+     });
+    });
+ 
+ </script>
+@endsection 
