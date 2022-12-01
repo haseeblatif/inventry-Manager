@@ -41,7 +41,8 @@ Route::controller(AboutController::class)->group(function () {
     Route::post('/update/about', 'UpdateAbout')->name('update.about');
     Route::get('/about', 'HomeAbout')->name('home.about');
     Route::get('/about/multi/Images', 'AboutMultiImages')->name('about.multi.images');
-   
+    Route::post('/store/multi/image', 'StoreMultiImages')->name('store.multi.Image');
+    Route::get('/all/multi/image', 'AllMultiImages')->name('all.multi.images');
 });
 
 Route::get('/dashboard', function () {
