@@ -81,29 +81,54 @@ class AboutController extends Controller
     {
         $image = $request->file('multi_images');
 
-        foreach($image as $multi_Image)
-        {
-            $name_gen = hexdec(uniqid()).".".$multi_Image->getClientOriginalExtension();
-            Image::make($multi_Image)->resize(200,200)->save('upload/about_MultiImages/'.$name_gen);
+        foreach ($image as $multi_Image) {
+            $name_gen = hexdec(uniqid()) . "." . $multi_Image->getClientOriginalExtension();
+            Image::make($multi_Image)->resize(200, 200)->save('upload/about_MultiImages/' . $name_gen);
 
-            $save_url = 'upload/about_MultiImages/'.$name_gen;
+            $save_url = 'upload/about_MultiImages/' . $name_gen;
             MultiImage::insert([
                 'multi_images' => $save_url,
                 'created_at' => Carbon::now()
             ]);
         }
-            $notification = array(
-                'message' => ' Multi Images About Updated Successfully',
-                'alert-type' => 'info'
+        $notification = array(
+            'message' => ' Multi Images About Updated Successfully',
+            'alert-type' => 'info'
 
-            );
-            return redirect()->back()->with($notification);
-            
-     
+        );
+        return redirect()->route('all.multi.images')->with($notification);
     }
     public function AllMultiImages()
     {
         $multiIMages = MultiImage::all();
-        return  view('admin.about_page.all_multiImage',compact('multiIMages'));
+        return  view('admin.about_page.all_multiImage', compact('multiIMages'));
+    }
+    public function EditMultiImages($id)
+    {
+        $multiImage  = MultiImage::findorFail($id);
+        return view('admin.about_page.edit_multi_Image' ,compact('multiImage'));
+    }
+    public function UpdateMultiImages(Request $request)
+    {
+        $multi_images_id = $request->id;
+        if ($request->file('multi_images')) {
+            $image = $request->file('multi_images');
+            // dd($image);
+            $name_gen = hexdec(uniqid()) . "." . $image->getClientOriginalExtension();
+
+            Image::make($image)->resize(220, 220)->save('upload/about_MultiImages/' . $name_gen);
+
+            $save_url = 'upload/about_MultiImages/' . $name_gen;
+
+            MultiImage::findOrFail($multi_images_id)->update([
+                'multi_images' => $save_url
+            ]);
+            $notification = array(
+                'message' => 'About MultiImage Updated Successfully',
+                'alert-type' => 'info'
+
+            );
+            return redirect()->route('all.multi.images')->with($notification);
+        } 
     }
 }
