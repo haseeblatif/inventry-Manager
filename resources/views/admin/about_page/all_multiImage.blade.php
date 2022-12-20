@@ -37,7 +37,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('edit.multi.images',$item->id) }}" class="btn btn-info sm" title="Edit Data"> <i class="fas fa-edit"></i></a>
-                                                <a href="" class="btn btn-danger sm" title="Delete Data"> <i class="fas fa-trash-alt"></i></a>
+                                                <a href="{{ route('delete.multi.images',$item->id) }}" class="btn btn-danger sm" title="Delete Data" id="delete"> <i class="fas fa-trash-alt"></i></a>
                                             </td>
 
                                         </tr>
