@@ -100,7 +100,7 @@ class AboutController extends Controller
     }
     public function AllMultiImages()
     {
-        $multiIMages = MultiImage::all();
+       
         return  view('admin.about_page.all_multiImage', compact('multiIMages'));
     }
     public function EditMultiImages($id)
