@@ -1,4 +1,4 @@
-@extends('frontend.main_master')
+@extends ('frontend.main_master')
 @section('main')
 <main>
 
