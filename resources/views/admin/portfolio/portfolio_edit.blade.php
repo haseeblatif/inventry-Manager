@@ -26,9 +26,9 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <label for="example-text-input" class="col-sm-2 col-form-label">Porfolio Description</label>
+                <label for="example-text-input" class="col-sm-2 col-form-label">Portfolio Description</label>
                 <div class="col-sm-10">
-                   <textarea name="portfolio_description" class="form-control"   cols="30" rows="10">{{$portfolio->portfolio_description}}</textarea>
+                    <textarea id="elm1"  name="portfolio_description">{{ $portfolio->portfolio_description }}</textarea>
                 </div>
             </div>
             <div class="row mb-3">
