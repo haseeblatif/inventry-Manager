@@ -3,7 +3,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\AboutController;
+use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\PortfolioController;
+use App\Models\BlogCategory;
 use Illuminate\Support\Facades\Route;
 
 
@@ -47,7 +49,6 @@ Route::controller(AboutController::class)->group(function () {
     Route::get('/edit/multi/image/{id}', 'EditMultiImages')->name('edit.multi.images');
     Route::post('/update/multi/image', 'UpdateMultiImages')->name('update.multi.image');
     Route::get('/delete/multi/image/{id}', 'DeleteMultiImages')->name('delete.multi.images');
-
 });
 
 //Portfolio Routes
@@ -60,9 +61,15 @@ Route::controller(PortfolioController::class)->group(function () {
     Route::post('/update/portfolio', 'updatePortfolio')->name('update.portfolio');
     Route::get('/delete/portfolio/{id}', 'deletePortfolio')->name('delete.portfolio');
     Route::get('/portfolio/details/{id}', 'portfolioDetails')->name('portfolio.details');
-    
 });
-
+Route::controller(BlogCategoryController::class)->group(function () {
+    Route::get('/all/blog/category', 'allCategory')->name('all.category.blog');
+    Route::get('/add/blog/category', 'addCategory')->name('add.category.blog');
+    Route::post('/store/blog/category', 'storeBlogCategory')->name('store.blog.category');
+    Route::get('/edit/blog/category/{id}', 'editBlogCategory')->name('edit.blog.category');
+    Route::post('/update/blog/category', 'updateBlogCategory')->name('update.blog.category');
+    Route::get('/delete/blog/category/{id}', 'deleteBlogCategory')->name('delete.blog.category');
+});
 Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
