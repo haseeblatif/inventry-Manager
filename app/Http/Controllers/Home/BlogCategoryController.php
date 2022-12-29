@@ -11,11 +11,11 @@ class BlogCategoryController extends Controller
     public function allCategory()
     {
         $allBlogCategory = BlogCategory::latest()->get();
-        return view('admin.Blog.all_blog_category', compact('allBlogCategory'));
+        return view('admin.BlogCategory.all_blog_category', compact('allBlogCategory'));
     }
     public function addCategory()
     {
-        return view('admin.Blog.add_blog_category');
+        return view('admin.BlogCategory.add_blog_category');
     }
     public function storeBlogCategory(Request $request)
     {
@@ -36,7 +36,7 @@ class BlogCategoryController extends Controller
     public function editBlogCategory($id)
     {
         $blogCategory = BlogCategory::find($id);
-        return view('admin.Blog.edit_blog_category', compact('blogCategory'));
+        return view('admin.BlogCategory.edit_blog_category', compact('blogCategory'));
     }
     public function updateBlogCategory(Request $request)
     {

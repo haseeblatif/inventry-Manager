@@ -7,7 +7,7 @@
 
         <div class="card-body">
 
-            <h4 class="card-title">Add Portfolio Page</h4>
+            <h4 class="card-title">Edit Portfolio Page</h4>
             <form method="POST" action="{{ route('update.portfolio') }}" enctype="multipart/form-data">
                 @csrf
 
