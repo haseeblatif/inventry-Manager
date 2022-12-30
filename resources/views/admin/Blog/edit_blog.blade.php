@@ -14,17 +14,17 @@
             <div class="card-body">
 
                 <h4 class="card-title">Edit Blog Page</h4>
-                <form method="POST"  enctype="multipart/form-data">
+                <form method="POST" action="{{ route('update.blog') }}"  enctype="multipart/form-data">
                     @csrf
 
-                    {{-- <input type="hidden" name="id" value="{{ $aboutPage->id }}"> --}}
+                    <input type="hidden" name="id" value="{{ $blogs->id }}">
                     <div class="row mb-3">
                         <label for="example-text-input" class="col-sm-2 col-form-label">Blog Category Name</label>
                         <div class="col-sm-10">
                             <select name="blog_category_id" id="example-text-input" class="form-select" aria-label="Default select example">
                                 <option selected="">Open this select menu</option>
                                 @foreach ($categories as $cat)
-                                <option value="{{ $cat->id }}">{{ $cat->blog_category }}</option>
+                                <option value="{{ $cat->id }}"{{ $cat->id == $blogs->blog_category_id ? 'selected' : '' }}>{{ $cat->blog_category }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -62,7 +62,7 @@
                                 src="{{ asset($blogs->blog_image) }}" data-holder-rendered="true">
                         </div>
                     </div>
-                    <input type="submit" class="btn btn-info waves-effect waves-light" value="Edit Blog Data">
+                    <input type="submit" class="btn btn-info waves-effect waves-light" value="Update Blog Data">
                 </form>
 
 
