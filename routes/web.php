@@ -1,12 +1,15 @@
 <?php
-
+use App\Http\Controllers;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BlogController;
+// use App\Http\Controllers\Controller;
 use App\Http\Controllers\Home\HomeSliderController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\PortfolioController;
 use App\Models\BlogCategory;
+use App\Http\Controllers\FirebaseController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -24,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontend.index');
 });
-
+Route::get('shop',[FirebaseController::class,'index']);
 //All admin routes
 
 Route::controller(AdminController::class)->group(function () {
@@ -84,10 +87,13 @@ Route::controller(BlogController::class)->group(function () {
     Route::post('/update/Blog', 'updateBlog')->name('update.blog');
     Route::get('/delete/Blog/{id}', 'deleteBlog')->name('delete.blog');
 
-   
 });
+
+//Firebase
+// Route::get('shop',FirebaseController::class);
 Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
+
